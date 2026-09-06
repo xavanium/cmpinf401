@@ -5,8 +5,10 @@ CMPINF 401--SEC 1200
 Ye olde tavern ordering system! */
 public static void main(String[] args) {
     boolean isPubber = true;
+    int numTarts = 0;
     double pint = 60, breadncheese = 120, custTart = 72, custTartDoz = 720, mealDeal = 168; //initializing menu item prices in pence
-    String yn, yn2, pw = "j", psp = "j", yn3 = "y";
+    double subtotal = 0;
+    String yn, yn2, pw = "j", psp = "j", yn3 = "y", ord = "n";
     Scanner k = new Scanner(System.in);
     System.out.println("Is there a customer to be waited on? (y/n)");
     yn = k.next();
@@ -56,6 +58,19 @@ public static void main(String[] args) {
 
         System.out.println();
         System.out.println("So, what would you like to order?");
+            while (yn3.equalsIgnoreCase("Y")){
+                ord = k.next();
+                    switch (ord.toLowerCase()) {
+                        case "pint":
+                        case "mead":
+                        case "pint of mead":
+                            subtotal += pint;
+                            break; //TODO: finish menu
+                    }
+                System.out.println("Anything else? (y/n)");
+                yn3 = k.next();
+        }
+        System.out.println("Your subtotal is " + subtotal + " pence");
     k.close();
 }
 
