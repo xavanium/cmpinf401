@@ -4,7 +4,7 @@ import java.util.Scanner;
 CMPINF 401--SEC 1200
 Ye olde tavern ordering system! */
 public static void main(String[] args) {
-    boolean isPubber = true;
+    boolean isPubber = false;
     int numTarts = 0;
     double pint = 60, breadncheese = 120, custTart = 72, custTartDoz = 720, mealDeal = 168; //initializing menu item prices in pence
     double subtotal = 0;
