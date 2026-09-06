@@ -45,15 +45,19 @@ public static void main(String[] args) {
     }
     System.out.println("Would you like to view the item prices in pence, shillings, or pounds?");
     psp = k.next();
-        if (psp.equalsIgnoreCase("pence")) {
-            pMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
-        } else if (psp.equalsIgnoreCase("shillings")){
-            sMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
-        } else if (psp.equalsIgnoreCase("pounds")){
-            lbMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
-        } else { 
-            System.out.println("What? ");
-            System.exit(0); //TODO: fix this somehow idk
+        switch (psp.toLowerCase()){
+            case "pence":
+                pMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
+                break;
+            case "shillings":
+                sMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
+                break;
+            case "pounds":
+                lbMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
+                break;
+            default:
+                System.out.println("Sorry, I didn't understand. Try again.");
+                psp = k.next();
         }
 
         System.out.println();
@@ -65,7 +69,23 @@ public static void main(String[] args) {
                         case "mead":
                         case "pint of mead":
                             subtotal += pint;
-                            break; //TODO: finish menu
+                            break;
+                        case "bread and cheese":
+                            subtotal += breadncheese;
+                            break;
+                        case "custard tart":
+                        case "custard":
+                        case "tart":
+                            System.out.println("How many would you like?");
+                            numTarts = k.nextInt();
+                                if (numTarts % 12==0){
+                                    subtotal += custTartDoz * (numTarts/12);
+                                } else {
+                                    subtotal += custTart * numTarts;
+                                }
+                                break;//TODO: figure out how to do amounts greater than but not divisible by 12
+                        case "meal deal":
+                            subtotal += mealDeal; //TODO: figure out how to make pints and breadncheese ordered separately into the meal deal
                     }
                 System.out.println("Anything else? (y/n)");
                 yn3 = k.next();
