@@ -1,8 +1,12 @@
 import java.util.Scanner;
+
+/* Valerie Kuttler
+CMPINF 401--SEC 1200
+Ye olde tavern ordering system! */
 public static void main(String[] args) {
-    boolean isPubber = false;
+    boolean isPubber = true;
     double pint = 60, breadncheese = 120, custTart = 72, custTartDoz = 720, mealDeal = 168; //initializing menu item prices in pence
-    String yn, yn2, pw = "j", psp = "j";
+    String yn, yn2, pw = "j", psp = "j", yn3 = "y";
     Scanner k = new Scanner(System.in);
     System.out.println("Is there a customer to be waited on? (y/n)");
     yn = k.next();
@@ -26,9 +30,8 @@ public static void main(String[] args) {
                     break;
                 } else if (!(pw.equals("WEASEL"))&& i==0) {
                     System.out.println("Try again.");
-                    continue;
                 } else {
-                    System.out.println("Sorry, you are not a pubber.");
+                    System.out.println("Sorry, you are not a pubber. You will not receive the discount.");
                 }
             }
             } 
@@ -47,8 +50,12 @@ public static void main(String[] args) {
         } else if (psp.equalsIgnoreCase("pounds")){
             lbMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
         } else { 
-            System.out.println("What? "); //TODO: fix this somehow idk
+            System.out.println("What? ");
+            System.exit(0); //TODO: fix this somehow idk
         }
+
+        System.out.println();
+        System.out.println("So, what would you like to order?");
     k.close();
 }
 
