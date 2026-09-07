@@ -81,10 +81,14 @@ public static void main(String[] args) {
                             numTarts = k.nextInt();
                                 if (numTarts % 12==0){
                                     subtotal += custTartDoz * (numTarts/12);
-                                } else {
+                                } 
+                                else if (numTarts%12>=1 && numTarts > 12){
+                                    subtotal += (numTarts/12 * custTartDoz) + (numTarts%12 * custTart);
+                                }
+                                else {
                                     subtotal += (numTarts*custTart);
                                 }
-                                break;//TODO: figure out how to do amounts greater than but not divisible by 12
+                                break;
                         //case "meal deal":
                             //subtotal += mealDeal; //TODO: figure out how to make pints and breadncheese ordered separately into the meal deal
                             //break;
