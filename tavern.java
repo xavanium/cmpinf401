@@ -58,22 +58,23 @@ public static void main(String[] args) {
             default:
                 System.out.println("Sorry, I didn't understand. Try again.");
                 psp = k.next();
+                break;
         }
 
         System.out.println();
         System.out.println("So, what would you like to order?");
             while (yn3.equalsIgnoreCase("Y")){
-                ord = k.next();
+                ord = k.next(); //TODO: figure out how to have spaces without the code breaking???
                     switch (ord.toLowerCase()) {
                         case "pint":
                         case "mead":
-                        case "pint of mead":
+                        //case "pint of mead":
                             subtotal += pint;
                             break;
-                        case "bread and cheese":
-                            subtotal += breadncheese;
-                            break;
-                        case "custard tart":
+                        //case "bread and cheese":
+                        //    subtotal += breadncheese;
+                        //    break;
+                        //case "custard tart":
                         case "custard":
                         case "tart":
                             System.out.println("How many would you like?");
@@ -81,11 +82,17 @@ public static void main(String[] args) {
                                 if (numTarts % 12==0){
                                     subtotal += custTartDoz * (numTarts/12);
                                 } else {
-                                    subtotal += custTart * numTarts;
+                                    subtotal += (numTarts*custTart);
                                 }
                                 break;//TODO: figure out how to do amounts greater than but not divisible by 12
-                        case "meal deal":
-                            subtotal += mealDeal; //TODO: figure out how to make pints and breadncheese ordered separately into the meal deal
+                        //case "meal deal":
+                            //subtotal += mealDeal; //TODO: figure out how to make pints and breadncheese ordered separately into the meal deal
+                            //break;
+                        default:
+                            System.out.println("Try again.");
+                            System.out.println("What would you like to order?");
+                            ord = k.next();
+                            break;
                     }
                 System.out.println("Anything else? (y/n)");
                 yn3 = k.next();
