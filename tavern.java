@@ -5,7 +5,7 @@ CMPINF 401--SEC 1200
 Ye olde tavern ordering system! */
 public static void main(String[] args) {
     boolean isPubber = false;
-    int numTarts = 0, numPints = 0, numBread = 0, numMeals = 0;
+    int numTarts = 0, numPints = 0, numBread = 0;
     double pint = 60, breadncheese = 120, custTart = 72, custTartDoz = 720, mealDeal = 168; //initializing menu item prices in pence
     double subtotal = 0;
     String yn, yn2, pw = "j", psp = "j", yn3 = "y", ord = "n";
@@ -61,8 +61,8 @@ public static void main(String[] args) {
                 psp = k.nextLine();
                 break;
         }
-
         System.out.println();
+        System.out.println("NOTE: you can say show subtotal at any time to see your current subtotal.");
             while (yn3.equalsIgnoreCase("y")) {
                 System.out.println("So, what would you like to order?");
                 ord = k.nextLine().toLowerCase();
@@ -94,17 +94,25 @@ public static void main(String[] args) {
                 case "meal deal":
                     subtotal += mealDeal;
                     break;
+                case "show subtotal":
+                    System.out.println("Your current subtotal is " + subtotal + " pence.");
+                    break;
                 default:
                     System.out.println("Sorry, I didn't understand that.");
                     continue;
             }
+            int convertedMeals = Math.min(numPints, numBread);
+            subtotal += convertedMeals * mealDeal;
+            subtotal += (numPints - convertedMeals) * pint;
+            subtotal += (numBread - convertedMeals) * breadncheese; //automatically converts breadandcheese/pints ordered separately into meal deals
             System.out.println("Anything else? (y/n)");
             yn3 = k.nextLine();
+                if (yn3.equalsIgnoreCase("show subtotal")){
+                    System.out.println("Your current subtotal is "+subtotal+" pence.");
+                    System.out.println("Anything else? (y/n)");
+                    yn3 = k.nextLine();
+                }
 }
-    int convertedMeals = Math.min(numPints, numBread);
-    subtotal += convertedMeals * mealDeal;
-    subtotal += (numPints - convertedMeals) * pint;
-    subtotal += (numBread - convertedMeals) * breadncheese; //automatically converts breadandcheese/pints ordered separately into meal deals
         System.out.println("Your subtotal is " + subtotal + " pence");
         k.close();
 }
