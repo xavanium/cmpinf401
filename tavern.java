@@ -11,7 +11,7 @@ public static void main(String[] args) {
     String yn, yn2, pw = "j", psp = "j", yn3 = "y", ord = "n";
     Scanner k = new Scanner(System.in);
     System.out.println("Is there a customer to be waited on? (y/n)");
-    yn = k.next();
+    yn = k.nextLine();
     if(yn.equalsIgnoreCase("n")){
         System.out.println("Ok goodbye");
         System.exit(0); //ends program
@@ -19,13 +19,13 @@ public static void main(String[] args) {
         System.out.println("Welcome to The Lynx and Newt!");
     }
     System.out.println("Are you a Preferred Pubber? (y/n)");
-    yn2 = k.next();
+    yn2 = k.nextLine();
     if (yn2.equalsIgnoreCase("n")) {
         isPubber = false;
     } else {
         for (int i = 0; i<2; i++){
             System.out.print("PASSWORD: ");
-            pw = k.next();
+            pw = k.nextLine();
                 if (pw.equals("WEASEL")){
                     isPubber = true;
                     System.out.println("Congrats, you're in! You will now receive discounted prices.");
@@ -45,7 +45,7 @@ public static void main(String[] args) {
     }
     //1 shilling = 12 pence, 1 pound = 20 shillings = 240 pence
     System.out.println("Would you like to view the item prices in pence, shillings, or pounds?");
-    psp = k.next();
+    psp = k.nextLine();
         switch (psp.toLowerCase()){
             case "pence":
                 pMenu(pint, breadncheese, custTart, custTartDoz, mealDeal);
@@ -58,14 +58,13 @@ public static void main(String[] args) {
                 break;
             default:
                 System.out.println("Sorry, I didn't understand. Try again.");
-                psp = k.next();
+                psp = k.nextLine();
                 break;
         }
 
         System.out.println();
-        System.out.println("So, what would you like to order?");
-        k.nextLine();
             while (yn3.equalsIgnoreCase("y")) {
+                System.out.println("So, what would you like to order?");
                 ord = k.nextLine().toLowerCase();
                     switch (ord) {
                 case "pint":
@@ -73,48 +72,41 @@ public static void main(String[] args) {
                 case "pint of mead":
                     numPints++;
                     break;
-
                 case "bread and cheese":
                     numBread++;
                     break;
-
                 case "custard":
                 case "tart":
                 case "custard tart":
                     System.out.println("How many would you like?");
                     numTarts = Integer.parseInt(k.nextLine());
-
                     if (numTarts % 12 == 0) {
                         subtotal += custTartDoz * (numTarts / 12);
                     }
                     else if (numTarts > 12) {
-                        subtotal += (numTarts / 12 * custTartDoz)
-                                + (numTarts % 12 * custTart);
+                        subtotal += (numTarts / 12 * custTartDoz) + (numTarts % 12 * custTart);
                     }
                     else {
                         subtotal += numTarts * custTart;
                     }
                     break;
-
                 case "meal":
                 case "meal deal":
-                    numMeals++;
+                    subtotal += mealDeal;
                     break;
-
                 default:
                     System.out.println("Sorry, I didn't understand that.");
                     continue;
             }
-
             System.out.println("Anything else? (y/n)");
             yn3 = k.nextLine();
 }
-    int mealDeals = Math.min(numPints, numBread);
-    subtotal += mealDeals * mealDeal;
-    subtotal += (numPints - mealDeals) * pint;
-    subtotal += (numBread - mealDeals) * breadncheese;
+    int convertedMeals = Math.min(numPints, numBread);
+    subtotal += convertedMeals * mealDeal;
+    subtotal += (numPints - convertedMeals) * pint;
+    subtotal += (numBread - convertedMeals) * breadncheese; //automatically converts breadandcheese/pints ordered separately into meal deals
         System.out.println("Your subtotal is " + subtotal + " pence");
-    k.close();
+        k.close();
 }
 
 public static void pMenu(double pint, double breadncheese, double custTart, double custTartDoz, double mealDeal){
