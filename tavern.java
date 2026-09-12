@@ -5,7 +5,7 @@ CMPINF 401--SEC 1200
 Ye olde tavern ordering system! */
 public static void main(String[] args) {
     boolean isPubber = false;
-    int numTarts = 0;
+    int numTarts = 0, numPints = 0, numBread = 0, numMeals = 0;
     double pint = 60, breadncheese = 120, custTart = 72, custTartDoz = 720, mealDeal = 168; //initializing menu item prices in pence
     double subtotal = 0;
     String yn, yn2, pw = "j", psp = "j", yn3 = "y", ord = "n";
@@ -30,7 +30,7 @@ public static void main(String[] args) {
                     isPubber = true;
                     System.out.println("Congrats, you're in! You will now receive discounted prices.");
                     break;
-                } else if (!(pw.equals("WEASEL"))&& i==0) {
+                } else if (!(pw.equals("WEASEL")) && i==0) {
                     System.out.println("Try again.");
                 } else {
                     System.out.println("Sorry, you are not a pubber. You will not receive the discount.");
@@ -39,10 +39,11 @@ public static void main(String[] args) {
             } 
     if(isPubber){ //applying discount prices for pubbers
         pint = 55;
-        breadncheese = 9;
+        breadncheese = 90;
         custTartDoz = 660;
         mealDeal = 156;
     }
+    //1 shilling = 12 pence, 1 pound = 20 shillings = 240 pence
     System.out.println("Would you like to view the item prices in pence, shillings, or pounds?");
     psp = k.next();
         switch (psp.toLowerCase()){
@@ -63,44 +64,55 @@ public static void main(String[] args) {
 
         System.out.println();
         System.out.println("So, what would you like to order?");
-            while (yn3.equalsIgnoreCase("Y")){
-                ord = k.next(); //TODO: figure out how to have spaces without the code breaking???
-                    switch (ord.toLowerCase()) {
-                        case "pint":
-                        case "mead":
-                        //case "pint of mead":
-                            subtotal += pint;
-                            break;
-                        //case "bread and cheese":
-                        //    subtotal += breadncheese;
-                        //    break;
-                        //case "custard tart":
-                        case "custard":
-                        case "tart":
-                            System.out.println("How many would you like?");
-                            numTarts = k.nextInt();
-                                if (numTarts % 12==0){
-                                    subtotal += custTartDoz * (numTarts/12);
-                                } 
-                                else if (numTarts%12>=1 && numTarts > 12){
-                                    subtotal += (numTarts/12 * custTartDoz) + (numTarts%12 * custTart);
-                                }
-                                else {
-                                    subtotal += (numTarts*custTart);
-                                }
-                                break;
-                        //case "meal deal":
-                            //subtotal += mealDeal; //TODO: figure out how to make pints and breadncheese ordered separately into the meal deal
-                            //break;
-                        default:
-                            System.out.println("Try again.");
-                            System.out.println("What would you like to order?");
-                            ord = k.next();
-                            break;
+        k.nextLine();
+            while (yn3.equalsIgnoreCase("y")) {
+                ord = k.nextLine().toLowerCase();
+                    switch (ord) {
+                case "pint":
+                case "mead":
+                case "pint of mead":
+                    numPints++;
+                    break;
+
+                case "bread and cheese":
+                    numBread++;
+                    break;
+
+                case "custard":
+                case "tart":
+                case "custard tart":
+                    System.out.println("How many would you like?");
+                    numTarts = Integer.parseInt(k.nextLine());
+
+                    if (numTarts % 12 == 0) {
+                        subtotal += custTartDoz * (numTarts / 12);
                     }
-                System.out.println("Anything else? (y/n)");
-                yn3 = k.next();
-        }
+                    else if (numTarts > 12) {
+                        subtotal += (numTarts / 12 * custTartDoz)
+                                + (numTarts % 12 * custTart);
+                    }
+                    else {
+                        subtotal += numTarts * custTart;
+                    }
+                    break;
+
+                case "meal":
+                case "meal deal":
+                    numMeals++;
+                    break;
+
+                default:
+                    System.out.println("Sorry, I didn't understand that.");
+                    continue;
+            }
+
+            System.out.println("Anything else? (y/n)");
+            yn3 = k.nextLine();
+}
+    int mealDeals = Math.min(numPints, numBread);
+    subtotal += mealDeals * mealDeal;
+    subtotal += (numPints - mealDeals) * pint;
+    subtotal += (numBread - mealDeals) * breadncheese;
         System.out.println("Your subtotal is " + subtotal + " pence");
     k.close();
 }
