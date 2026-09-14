@@ -1,5 +1,5 @@
 /* Valerie Kuttler
-Lab 2: Dice Rolling
+Lab 3: Dice Rolling
 CMPINF 401--SEC 1200 */
 import java.util.*;
 public static void main(String[] args){
