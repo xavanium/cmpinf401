@@ -114,7 +114,29 @@ public static void main(String[] args) {
                 }
 }
         System.out.println("Your subtotal is " + subtotal + " pence");
-        k.close();
+        while (subtotal > 0){
+        System.out.println("How would you like to pay? (pence/shillings/pounds)");
+        String payType = k.nextLine();
+            if (payType.equalsIgnoreCase("pence")){
+                System.out.println("Insert payment amount: ");
+                int pAmt = k.nextInt();
+                subtotal -= pAmt;
+            } else if (payType.equalsIgnoreCase("Shillings")){
+                System.out.println("Insert payment amount: ");
+                int pAmt = k.nextInt();
+                subtotal -= pAmt*12;
+            } else if (payType.equalsIgnoreCase("Pounds")){
+                System.out.println("Insert payment amount: ");
+                int pAmt = k.nextInt();
+                subtotal -= pAmt*240;
+            }
+            System.out.println("Current balance: " + subtotal + " pence");
+        }
+    if (subtotal<0){
+                System.out.println("Your change is " + -1*subtotal +" pence");
+                System.out.println("Thank you, come again.");
+            } else if (subtotal==0) System.out.println("Thank you, come again.");
+    k.close();
 }
 
 public static void pMenu(double pint, double breadncheese, double custTart, double custTartDoz, double mealDeal){
