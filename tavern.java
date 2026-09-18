@@ -123,22 +123,22 @@ public class tavern {
                     System.out.println("What would you like to change? (mead/bread/tarts)");
                     String change = k.nextLine();
                     System.out.println("NOTE: This will change the total amount to the new number inputted, not add.");
-                    switch (change.toLowerCase()) {
-                        case "mead":
-                            System.out.print("Amount of pints of mead you would REALLY like: ");
-                            numPints = Integer.parseInt(k.nextLine());
-                            break;
-                        case "bread":
-                        System.out.print("Amount of orders of bread and cheese you would REALLY like: ");
-                            numBread = Integer.parseInt(k.nextLine());
-                            break;
-                        case "tarts":
-                            System.out.print("Amount of custard tarts you would REALLY like: ");
-                            numTarts = Integer.parseInt(k.nextLine());
-                            break;
-                        default:
-                            System.out.println("Sorry, I didn't catch that.");
-                            break;
+                        switch (change.toLowerCase()) {
+                            case "mead":
+                                System.out.print("Amount of pints of mead you would REALLY like: ");
+                                numPints = Integer.parseInt(k.nextLine());
+                                break;
+                            case "bread":
+                            System.out.print("Amount of orders of bread and cheese you would REALLY like: ");
+                                numBread = Integer.parseInt(k.nextLine());
+                                break;
+                            case "tarts":
+                                System.out.print("Amount of custard tarts you would REALLY like: ");
+                                numTarts = Integer.parseInt(k.nextLine());
+                                break;
+                            default:
+                                System.out.println("Sorry, I didn't catch that.");
+                                break;
                     }
                     break;
                 default:
@@ -160,6 +160,28 @@ public class tavern {
                 yn3 = k.nextLine();
             }
         }
+            while (yn3.equalsIgnoreCase("update")){
+                System.out.println("What would you like to change? (mead/bread/tarts)");
+                    String change = k.nextLine();
+                    System.out.println("NOTE: This will change the total amount to the new number inputted, not add.");
+                        switch (change.toLowerCase()) {
+                            case "mead":
+                                System.out.print("Amount of pints of mead you would REALLY like: ");
+                                numPints = Integer.parseInt(k.nextLine());
+                                break;
+                            case "bread":
+                            System.out.print("Amount of orders of bread and cheese you would REALLY like: ");
+                                numBread = Integer.parseInt(k.nextLine());
+                                break;
+                            case "tarts":
+                                System.out.print("Amount of custard tarts you would REALLY like: ");
+                                numTarts = Integer.parseInt(k.nextLine());
+                                break;
+                            default:
+                                System.out.println("Sorry, I didn't catch that.");
+                                break;
+                    }
+            }
         double subtotal = calculateSubtotal(numPints,numBread,numTarts,pint,breadncheese,custTart,custTartDoz,mealDeal);
         System.out.println("Your subtotal is " + subtotal + " pence");
         while (subtotal > 0) {
