@@ -4,6 +4,8 @@ CMPINF 401--SEC 1200
 Ye olde tavern ordering system! */
 public class tavern {
     public static void main(String[] args) {
+        String continued = "y";
+        while(continued.equalsIgnoreCase("y")){
         boolean isPubber = false;
         int numTarts = 0;
         int numPints = 0;
@@ -183,9 +185,11 @@ public class tavern {
         if (subtotal < 0) {
             System.out.println("Your change is "+ (-1 * subtotal)+ " pence");
         }
-        System.out.println("Thank you, come again.");
-        k.close();
+        System.out.println();
+        System.out.println("Would you like to run the program again? (y/n)");
+        continued = k.nextLine();
     }
+}
 //subtotal calculation
     public static double calculateSubtotal(int numPints,int numBread,int numTarts,double pint,double breadncheese,double custTart,double custTartDoz,double mealDeal) {
         /*
